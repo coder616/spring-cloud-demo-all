@@ -16,9 +16,10 @@
         <module>consumer-feign</module>
         <module>consumer-hystrix</module>
         <module>zuul</module>
-        <module>config</module>
+        <module>config-server</module>
         <module>producer-feign</module>
         <module>producer-fegin-api</module>
+        <module>consumer-feign-config-client</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>

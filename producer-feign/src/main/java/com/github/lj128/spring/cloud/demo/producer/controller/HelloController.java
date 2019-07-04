@@ -1,7 +1,7 @@
 package com.github.lj128.spring.cloud.demo.producer.controller;
 
-import com.github.lj128.spring.cloud.demo.producer.api.HelloServiceApi;
-import com.github.lj128.spring.cloud.demo.producer.dto.UserDto;
+import com.github.lj128.spring.cloud.demo.producer.feign.api.HelloServiceApi;
+import com.github.lj128.spring.cloud.demo.producer.feign.dto.UserDto;
 import com.github.lj128.spring.cloud.demo.producer.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

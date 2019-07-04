@@ -7,9 +7,9 @@
         <artifactId>spring-cloud-demo-all</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>com.github.lj128.spring.cloud.demo.producer</artifactId>
+    <artifactId>producer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>com.github.lj128.spring.cloud.demo.producer</name>
+    <name>producer</name>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -27,6 +27,13 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

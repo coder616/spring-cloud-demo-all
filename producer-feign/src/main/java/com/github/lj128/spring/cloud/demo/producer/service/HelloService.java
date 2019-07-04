@@ -1,6 +1,6 @@
 package com.github.lj128.spring.cloud.demo.producer.service;
 
-import com.github.lj128.spring.cloud.demo.producer.dto.UserDto;
+import com.github.lj128.spring.cloud.demo.producer.feign.dto.UserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
