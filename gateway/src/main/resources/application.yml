@@ -1,0 +1,42 @@
+logging:
+  level:
+    root: info
+    # 打印lb过滤器日志
+    org.springframework.cloud.gateway.filter.ReactiveLoadBalancerClientFilter: trace
+server:
+  port: 8007
+
+spring:
+  jmx:
+    enabled: false
+  application:
+    name: gateway
+  cloud:
+    loadbalancer:
+      ribbon:
+        # 关闭ribbon Spring Cloud 推荐使用 Spring Cloud LoadBlance
+        enabled: false
+    gateway:
+      httpclient:
+        response-timeout: 1000
+        connect-timeout: 1000
+        wiretap: true
+      httpserver:
+        wiretap: true
+      routes:
+        - id: test
+          # lb = LoadBalance负载均,以lb://开头的地址都使用负载均衡
+          uri: lb://producer
+          predicates:
+            - Path=/gw/**
+          filters:
+            - StripPrefix=1
+          metadata:
+            response-timeout: 2000
+            connect-timeout: 2000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+    register-with-eureka: false

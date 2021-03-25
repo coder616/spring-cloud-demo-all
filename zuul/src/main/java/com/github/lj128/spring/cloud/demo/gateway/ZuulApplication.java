@@ -1,4 +1,4 @@
-package com.github.lj128.spring.cloud.demo.zuul;
+package com.github.lj128.spring.cloud.demo.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
