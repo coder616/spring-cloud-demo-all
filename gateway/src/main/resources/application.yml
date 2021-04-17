@@ -2,13 +2,34 @@ logging:
   level:
     root: info
     # 打印lb过滤器日志
-    org.springframework.cloud.gateway.filter.ReactiveLoadBalancerClientFilter: trace
+#    org.springframework.cloud.gateway.filter.ReactiveLoadBalancerClientFilter: trace
+#    reactor:
+#      netty: trace
+    org:
+      springframework:
+        web:
+          reactive: trace
+        http:
+          server:
+            reactive: trace
+        cloud:
+          gateway: trace
+
 server:
   port: 8007
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: gateway
+  endpoint:
+    gateway:
+      enabled: true
+
 spring:
   jmx:
-    enabled: false
+    enabled: true
   application:
     name: gateway
   cloud:
@@ -20,20 +41,42 @@ spring:
       httpclient:
         response-timeout: 1000
         connect-timeout: 1000
-        wiretap: true
+        wiretap: false
       httpserver:
-        wiretap: true
+        wiretap: false
       routes:
-        - id: test
-          # lb = LoadBalance负载均,以lb://开头的地址都使用负载均衡
-          uri: lb://producer
+#        - id: hello
+#          uri: http://localhost:8003/hello #目标URL
+#          predicates:
+#            - Path=/gw/hello #path断言
+#          filters:
+#            - StripPrefix=1
+        ############################################
+#        - id: after
+#          uri: http://localhost:8003 #目标URL
+#          predicates:
+#            - After=2021-04-14T15:17:45.415+08:00[Asia/Shanghai]
+        ############################################
+        - id: cookie
+          uri: http://localhost:8003 #目标URL
           predicates:
-            - Path=/gw/**
-          filters:
-            - StripPrefix=1
-          metadata:
-            response-timeout: 2000
-            connect-timeout: 2000
+            - Cookie=user,test
+        ############################################
+        - id: header
+          uri: http://localhost:8003 #目标URL
+          predicates:
+            - Header=X-Request-Id, \d+
+        ############################################
+#        - id: lb-test
+#          # lb = LoadBalance负载均,以lb://开头的地址都使用负载均衡
+#          uri: lb://producer
+#          predicates:
+#            - Path=/gw/**
+#          filters:
+#            - StripPrefix=1
+#          metadata:
+#            response-timeout: 2000
+#            connect-timeout: 2000
 
 eureka:
   client:

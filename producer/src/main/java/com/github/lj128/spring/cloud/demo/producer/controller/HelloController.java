@@ -13,11 +13,11 @@ public class HelloController {
     @RequestMapping("hello")
     public String hello() {
         log.info("I am is com.github.lj128.spring.cloud.demo.producer");
-        try {
-            Thread.sleep(60*1000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(60*1000L);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         return "Hello World,I am is producer!";
     }
 }
