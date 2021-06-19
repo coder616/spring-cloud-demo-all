@@ -2,11 +2,15 @@ package com.github.lj128.spring.cloud.demo.producer.service;
 
 import com.github.lj128.spring.cloud.demo.producer.feign.dto.UserDto;
 import lombok.extern.slf4j.Slf4j;
+import org.bouncycastle.cms.PasswordRecipientId;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
 public class HelloService {
+    @Autowired
+    private AService aService;
 
     public String hello() {
         log.info("requesting producer-feign for hello !");
