@@ -15,10 +15,15 @@ public class HelloService {
 
     @HystrixCommand(fallbackMethod = "helloFallback")
     public String hello() {
-        return restTemplate.getForObject("http://producer/hello", String.class);
+//        return restTemplate.getForObject("http://producer/hello", String.class);
+        while (true) {
+            //熔断并不会中断正在处理的线程
+            System.out.println("i am running ["+Thread.currentThread().getId()+"]");
+        }
+//        return "Hystrix test";
     }
 
     public String helloFallback() {
-        return "error";
+        return "Fallback";
     }
 }
